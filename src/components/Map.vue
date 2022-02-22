@@ -74,10 +74,20 @@ onMounted(() => {
 		.addTo(map.value);
 	geojson.features.forEach((marker) => {
 		new Marker({ color: '#0000cc' })
-			.setPopup(new mapboxgl.Popup().setHTML('<h1>Hello World!</h1>'))
+			// .setPopup(new mapboxgl.Popup().setHTML('<h1>Hello World!</h1>'))
 			.setLngLat(marker.geometry.coordinates)
 			.addTo(map.value);
 	});
+	setTimeout(() => {
+		map.value.zoomTo(14, {
+			duration: 2000,
+		});
+		setTimeout(() => {
+			map.value.zoomTo(8, {
+				duration: 2000,
+			});
+		}, 5000);
+	}, 6000);
 }),
 	onUnmounted(() => {
 		map.value?.remove();
